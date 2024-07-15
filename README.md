@@ -47,7 +47,7 @@ model = mamba_4chan.load_from_checkpoint("path_to.ckpt")
 
 # from model_config import ssm_780m_config
 # model = mamba_4chan.load_from_checkpoint(
-#     "path_to_weight_only.ckpt",
+#     "path_to_weights_only.ckpt",
 #     config = ssm_780m_config()
 # )
 
