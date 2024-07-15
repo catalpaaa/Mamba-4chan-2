@@ -17,10 +17,6 @@ model.load_state_dict(state_dict)
 # load mamba 4chan 2 model
 # model = mamba_4chan_2.load_from_checkpoint("path_to.ckpt")
 
-import wandb
-
-wandb.require("core")
-
 model.learning_rate = 1e-7
 
 
@@ -106,21 +102,19 @@ class pol_data_module(pl.LightningDataModule):
         )
 
 
-data = pol_data_module(memmap_path="dataset.dat", batch_size=2, num_workers=32)
+data = pol_data_module(memmap_path="dataset.dat", batch_size=2, num_workers=16)
 
 trainer = pl.Trainer(
     callbacks=[
         ModelCheckpoint(
             dirpath="models/",
             save_top_k=-1,
-            every_n_train_steps=100,
+            every_n_train_steps=500,
         ),
     ],
     logger=pl_loggers.WandbLogger(
         project="Mamba 4chan 2 780m",
         name="Fine-tuning",
-        resume="must",
-        id="37z0xuld",
     ),
     precision="bf16-mixed",
     max_epochs=1,
@@ -128,7 +122,7 @@ trainer = pl.Trainer(
     num_sanity_val_steps=0,
 )
 
-trainer.fit(model, data, ckpt_path="models/epoch=0-step=10000.ckpt")
+trainer.fit(model, data)
 # trainer.fit(model, data, ckpt_path="ckpt to resume training")
 
 trainer.save_checkpoint("mamba_4chan_2_780m.ckpt")
