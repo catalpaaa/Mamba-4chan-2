@@ -27,7 +27,7 @@ We provide the following fine-tuned models, each trained for one epoch on the to
 |--------------------|------------|----------------|------------------|---------------------------|-----------------|
 | Mamba 4chan 2 780M | 1536       | 48             | None             | [Download][780M download] | [log][780M log] |
 
-[780M download]: https://archive.org/details/mamba_4chan_2_780m
+[780M download]: https://archive.org/download/mamba-4chan-2/Mamba_4chan_2_780m.ckpt
 [780M log]: https://wandb.ai/catalpa/Mamba%204chan%202%20780m
 
 ## Training and Inferencing
